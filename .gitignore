@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Added Personally
+libft/*
+push_swap.en.subject.pdf

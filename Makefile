@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/06 22:38:25 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/03/10 12:47:41 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RM = /bin/rm -f
 
 LIBFT_DIR = libft/
 
-FILES = 
+# C filenames of the project
+FILES = ft_checker.c
 
 OBJ	= $(FILES:%.c=%.o)
 
@@ -28,9 +29,8 @@ all: $(NAME)
 
 $(NAME): lib $(OBJ)
 	
-
 $(OBJ): $(FILES)
-	@ $(CC) $(CFLAGS) $(FILES) -I$(MLX_DIR) -Iinc
+	@ $(CC) $(CFLAGS) $(FILES) -Iincludes
 
 lib:
 	@ $(MAKE) -C $(LIBFT_DIR) all
