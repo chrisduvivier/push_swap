@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/10 12:47:41 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/03/10 19:20:29 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ FILES = ft_checker.c
 
 OBJ	= $(FILES:%.c=%.o)
 
-all: $(NAME)
+all: $(NAME_EXEC_1)
 
-$(NAME): lib $(OBJ)
+$(NAME_EXEC_1): lib $(OBJ)
 	
 $(OBJ): $(FILES)
 	@ $(CC) $(CFLAGS) $(FILES) -Iincludes
