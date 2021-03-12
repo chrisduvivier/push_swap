@@ -77,7 +77,26 @@ int			ft_isdigit_string(const char *str)
 	return (1);
 }
 
-int	free_and_exit(t_checker *checker)
+int		checker_atoi(const char *str)
+{
+	unsigned long	result;
+	int				sign;
+	
+	result = 0;
+	sign = 1;
+	if (*str == '-' || *str == '+')
+		sign = (*str++ == '-') ? -1 : 1;
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		if (result > INT_MAX)
+			return (sign == -1) ? (0) : (-1);
+		*str++;
+	}
+	return (int)(sign * result);
+}
+
+int	free_and_exit(t_checker *checker_arg)
 {
 	// TODO
 	//	void	ft_lstclear(t_list **lst, void (*del)(void*))
@@ -85,45 +104,51 @@ int	free_and_exit(t_checker *checker)
 	return (0); 
 }
 
-int	parse_content(char *content, t_checker *checker)
+int	parse_content(char *content, t_checker *checker_arg)
 {
 	t_list	*new_node;
-	char	*copy_content;
 
-	ft_printf("%s\n", content);
-	// check if valid input (digit)
 	if (ft_isdigit_string(content) == 0)
 	{
 		ft_printf("problem with %s \n", content);
-		// TODO: FREE and EXIT
-		free_and_exit(checker);
+		free_and_exit(checker_arg);
 		return (1);
 	}
 
-	// create node and push to stack
-	// content needs to be casted to integer, and malloc is needed for the int in the node.
-	// t_list	*ft_lstnew(void *content)
-	if (!(copy_content = ft_strdup(content)))
+	// allocate memory for storing integer
+	void *copy_content;
+	if (!(copy_content = malloc(sizeof(int))))
 	{
-		ft_printf("problem with malloc ft_strdup\n");
-		// TODO: FREE and EXIT
-		free_and_exit(checker);
-		return (1);
+		//if malloc fail
+		free_and_exit(checker_arg);
 	}
+	
+	// checker_atoi returns an integer (convert string to int)
+	// copy_content = checker_atoi(content);
+	// ft_printf("Original string: [%s]\n", content);
+	// ft_printf("After: copy_content = [%d]\n", copy_content);
 
-	if (!(new_node = ft_lstnew(copy_content)))
+	*((int*)copy_content) = 100;
+
+	if (!(new_node = ft_lstnew((copy_content))))
 	{
+		//if malloc fail
 		ft_printf("problem with malloc new_node\n");
-		// TODO: FREE and EXIT
-		free_and_exit(checker);
+		free_and_exit(checker_arg);
 		return (1);
 	}
 
-	ft_stack_push(checker->stack_a, new_node);
+	// printf("%d\n",*((int*)ptr));
+
+	//=======================      HERE      ±======================//
+	ft_printf("After creating node: [%d]\n", *((int*)new_node->content));
+	//============================================================//
+
+	ft_stack_push(checker_arg->stack_a, new_node);
 	return (0);
 }
 
-int	checker_parse_arg(int argc, char *argv[], t_checker *checker)
+int	checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 {
 	int counter;
 	
@@ -138,14 +163,26 @@ int	checker_parse_arg(int argc, char *argv[], t_checker *checker)
 	while (counter < argc)
 	{
 		// check validity of argument and append to stack_a
-		if (parse_content(argv[counter], checker) != 0)
+		if (parse_content(argv[counter], checker_arg) != 0)
 			return (1);
 		counter++;
 	}
-	ft_printf("size: %d\n", checker->stack_a->size);
-	ft_printf("head: %s\n", checker->stack_a->head->content);
-	ft_printf("tail: %s\n", checker->stack_a->tail->content);
 	// return OK or not
+	return (0);
+}
+
+int	checker_is_sorted(t_stack *stack)
+{
+	t_list 	*cursor;
+	int		number;
+
+	cursor = stack->head;
+	number = (int)cursor->content;
+	while (cursor != NULL)
+	{
+		// compare
+		// if (cursor->next && number < 
+	}
 	return (0);
 }
 
@@ -168,6 +205,14 @@ int main(int argc, char *argv[])
 		//Error: free and exit 
 		return (1);
 	}
+
+	//tmp check
+	ft_printf("size: %d\n", checker_arg.stack_a->size);
+	ft_printf("head: %d\n", *((int*)checker_arg.stack_a->head->content));
+	ft_printf("tail: %d\n", *((int*)checker_arg.stack_a->tail->content));
+
+	//check if sorted
+	// checker_sorted(checker_arg.stack_a);
 
 	return (0);
 }
