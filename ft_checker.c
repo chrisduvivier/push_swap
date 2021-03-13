@@ -104,46 +104,22 @@ int	free_and_exit(t_checker *checker_arg)
 	return (0); 
 }
 
+/*
+**	verify if content is valid digit, malloc integer, get the string converted
+**	to integer, create linked-list node with content and push to stack.
+*/
 int	parse_content(char *content, t_checker *checker_arg)
 {
 	t_list	*new_node;
+	void	*copy_content;
 
 	if (ft_isdigit_string(content) == 0)
-	{
-		ft_printf("problem with %s \n", content);
 		free_and_exit(checker_arg);
-		return (1);
-	}
-
-	// allocate memory for storing integer
-	void *copy_content;
 	if (!(copy_content = malloc(sizeof(int))))
-	{
-		//if malloc fail
 		free_and_exit(checker_arg);
-	}
-	
-	// checker_atoi returns an integer (convert string to int)
-	// copy_content = checker_atoi(content);
-	// ft_printf("Original string: [%s]\n", content);
-	// ft_printf("After: copy_content = [%d]\n", copy_content);
-
-	*((int*)copy_content) = 100;
-
+	*((int*)copy_content) = checker_atoi(content);
 	if (!(new_node = ft_lstnew((copy_content))))
-	{
-		//if malloc fail
-		ft_printf("problem with malloc new_node\n");
 		free_and_exit(checker_arg);
-		return (1);
-	}
-
-	// printf("%d\n",*((int*)ptr));
-
-	//=======================      HERE      ±======================//
-	ft_printf("After creating node: [%d]\n", *((int*)new_node->content));
-	//============================================================//
-
 	ft_stack_push(checker_arg->stack_a, new_node);
 	return (0);
 }
@@ -162,9 +138,7 @@ int	checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 	// check all arg are valid inputs
 	while (counter < argc)
 	{
-		// check validity of argument and append to stack_a
-		if (parse_content(argv[counter], checker_arg) != 0)
-			return (1);
+		parse_content(argv[counter], checker_arg);
 		counter++;
 	}
 	// return OK or not
@@ -175,13 +149,19 @@ int	checker_is_sorted(t_stack *stack)
 {
 	t_list 	*cursor;
 	int		number;
+	int		next;
 
 	cursor = stack->head;
-	number = (int)cursor->content;
 	while (cursor != NULL)
 	{
-		// compare
-		// if (cursor->next && number < 
+		number = *((int*)cursor->content);
+		if (cursor->next != NULL)
+		{
+			next = *((int*)cursor->next->content);
+			if (number > next)
+				return (1);
+		}
+		cursor = cursor->next;
 	}
 	return (0);
 }
@@ -212,7 +192,10 @@ int main(int argc, char *argv[])
 	ft_printf("tail: %d\n", *((int*)checker_arg.stack_a->tail->content));
 
 	//check if sorted
-	// checker_sorted(checker_arg.stack_a);
+	if (checker_is_sorted(checker_arg.stack_a) == 0)
+		ft_printf("SORTED\n");
+	else
+		ft_printf("KO\n");
 
 	return (0);
 }

@@ -4,7 +4,7 @@
 - [x] write stacks operation functions
     - [x] push
     - [x] pop
-- [ ] function to check if stack is sorted or not
+- [x] function to check if stack is sorted or not
 - [ ] Make it compatible for integer (my assumption): handle potential error for overflow
 - [ ] write individual operations defined in subjects
 - [ ] Checker: read 1 instruction per line and return [OK, KO, ERROR] at the end.
