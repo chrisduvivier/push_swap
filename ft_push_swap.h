@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/14 08:04:34 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/14 12:15:03 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define FT_PUSH_SWAP_H
 
 # include "libft/libft.h"
-typedef struct	s_stack
-{
-	size_t		size;
-	t_list		*head;
-	t_list		*tail;
-}				t_stack;
 
 typedef struct	s_checker
 {
@@ -28,8 +22,6 @@ typedef struct	s_checker
 }				t_checker;
 
 // TO ADD TO LIBFT ============
-void	ft_stack_push(t_stack *stack, t_list *node);
-t_list  *ft_stack_pop(t_stack *stack);
 
 
 // ============================

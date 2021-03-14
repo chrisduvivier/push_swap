@@ -6,60 +6,13 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/14 09:32:07 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/14 12:39:34 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // 1 step. call checker, get to esetup a stack from the input
 #include "libft/libft.h"
 #include "ft_push_swap.h"
-
-// Linked-list implementation of stacks
-
-// initialize a stuck
-t_stack *ft_stack_init(void)
-{
-    t_stack *stack;
-
-    if (!(stack = malloc(sizeof(t_stack))))
-		error_exit(NULL);
-	stack->head = NULL;
-	stack->tail = NULL;
-	stack->size = 0;
-	return (stack);
-}
-
-// push to stack: append to the top (to head)
-void	ft_stack_push(t_stack *stack, t_list *node)
-{
-	t_list *tmp;
-
-	tmp = NULL;
-	if (stack->size != 0 && stack->head != NULL)
-		tmp = stack->head;
-	stack->head = node;
-	node->next = tmp;
-
-	// handle tail if not set yet
-	if (stack->size == 0)
-		stack->tail = node;
-	stack->size++;
-}
-
-// pop from stack: retrive element from top of stack (from head)
-t_list *ft_stack_pop(t_stack *stack)
-{
-	t_list *res;
-
-	if (stack->size == 0 || stack->head == NULL)
-		return (NULL);
-	res = stack->head;
-	stack->head = stack->head->next;
-	if (stack->head == NULL)
-		stack->tail = NULL;
-	stack->size--;
-	return (res);
-}
 
 void	print_list_int(void *content)
 {
@@ -80,22 +33,6 @@ void 	ft_stack_print(t_stack *stack)
 			*(int*)stack->tail->content);
 		// tmp end
 	}
-}
-
-int			ft_isdigit_string(const char *str)
-{
-	long 		result;
-	int			sign;
-
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str != '\0')
-	{
-		if (!(ft_isdigit(*str)))
-			return (0);
-		str++;
-	}
-	return (1);
 }
 
 /*
@@ -123,13 +60,17 @@ int		checker_atoi(const char *str, t_checker *checker_arg)
 
 int	free_and_exit(t_checker *checker_arg)
 {
-	if (checker_arg->stack_a && checker_arg->stack_a->head)
+	if (checker_arg->stack_a)
 	{
-		ft_lstclear(&checker_arg->stack_a->head, *free);
+		if (checker_arg->stack_a->head)
+			ft_lstclear(&checker_arg->stack_a->head, *free);
+		free(checker_arg->stack_a);
 	}
-	if (checker_arg->stack_b && checker_arg->stack_b->head)
+	if (checker_arg->stack_b)
 	{
-		ft_lstclear(&checker_arg->stack_b->head, *free);
+		if (checker_arg->stack_b->head)
+			ft_lstclear(&checker_arg->stack_b->head, *free);
+		free(checker_arg->stack_b);
 	}
 	exit(0);
 }
@@ -273,6 +214,14 @@ int		read_user_input(t_checker *checker_arg)
 	return (0);
 }
 
+void	checker_arg_init(t_checker *checker_arg)
+{
+	if ((checker_arg->stack_a = ft_stack_init()) == NULL)
+		error_exit(checker_arg);
+	if ((checker_arg->stack_b = ft_stack_init()) == NULL)
+		error_exit(checker_arg);
+}
+
 /*
 **  `./checker 3 2 1 0`
 **	`./checker 3 2 one 0` -> Error
@@ -281,9 +230,7 @@ int main(int argc, char *argv[])
 {
 	t_checker 	checker_arg;
 	
-	// Need to check if malloc OK so might need to put into 1 fonction with a global struct
-	checker_arg.stack_a = ft_stack_init();
-	checker_arg.stack_b = ft_stack_init();
+	checker_arg_init(&checker_arg);
 	if (argc > 1)
 	{
 		if (checker_parse_arg(argc, argv, &checker_arg) != 0)
@@ -291,7 +238,6 @@ int main(int argc, char *argv[])
 		
 		// read user input
 		read_user_input(&checker_arg);
-
 
 		//check if sorted
 		if (checker_is_sorted(checker_arg.stack_a) == 0 && 

@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/13 14:59:00 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/03/14 11:48:00 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM = /bin/rm -f
 LIBFT_DIR = libft/
 
 # C filenames of the project
-FILES = ft_checker.c ft_checker_operations_1.c
+FILES = ft_checker.c ft_checker_operations.c
 
 OBJ	= $(FILES:%.c=%.o)
 
