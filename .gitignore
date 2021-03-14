@@ -54,3 +54,4 @@ dkms.conf
 # Added Personally
 libft/*
 push_swap.en.subject.pdf
+.DS_Store
