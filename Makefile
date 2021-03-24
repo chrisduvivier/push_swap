@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/14 11:48:00 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/03/15 12:17:06 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,23 @@ RM = /bin/rm -f
 LIBFT_DIR = libft/
 
 # C filenames of the project
-FILES = ft_checker.c ft_checker_operations.c
+FILES = 	ft_checker_helper.c \
+			ft_find_duplicate.c \
+			ft_handle_operations.c \
+			ft_stack_operations.c \
+			ft_stack_helper.c \
+			ft_checker_exit.c \
 
 OBJ	= $(FILES:%.c=%.o)
 
-all: $(NAME_EXEC_1)
+all: $(NAME_EXEC_1) $(NAME_EXEC_2)
 
 $(NAME_EXEC_1): lib $(OBJ)
+	$(CC) $(OPTIONS) libft.a ft_checker.c $(FILES) -o $(NAME_EXEC_1)
 	
+$(NAME_EXEC_2): lib $(OBJ)
+	$(CC) $(OPTIONS) libft.a ft_push_swap.c $(FILES) -o $(NAME_EXEC_2)
+
 $(OBJ): $(FILES)
 	@ $(CC) $(CFLAGS) $(FILES) -Iincludes
 

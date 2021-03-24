@@ -6,11 +6,11 @@
     - [x] pop
 - [x] function to check if stack is sorted or not
 - [x] write individual operations defined in subjects
-- [ ] Checker Error handling
+- [x] Checker Error handling
     - [x] Only Integer
     - [x] No duplicate
 - [x] Checker: read 1 instruction per line and return [OK, KO, ERROR] at the end.
-    - 
+- [ ] Checker: delete all unnecessary logs (cmd+F on ft_printf)
 - [ ] Push-Swap: read stack and return smallest list of instruction to sort.
     - 
 
