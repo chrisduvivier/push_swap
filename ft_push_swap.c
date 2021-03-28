@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/24 12:51:38 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:15:19 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,72 @@ void	quick_sort(t_checker *arg, int n)
 {	
 	int top_half_len;
 
+	ft_printf(" *** QUICK SORT ***\n");
+	ft_printf(" *** n = [%d] ***\n", n);
+	print_stacks(arg);
+	ft_printf(" ***************************\n", n);
+
 	if (n == 1 || n == 0)
 		return;
 	top_half_len = 0;
 	quick_sort_helper_small(arg, n, &top_half_len);
 	quick_sort(arg, top_half_len);
 	quick_sort_helper_large(arg, n, &top_half_len);
+}
+
+
+void	quick_sort2(t_checker *arg, int n)
+{	
+	int top_half_len;
+
+	ft_printf("**************** QUICK SORT ***************\n");
+	ft_printf(" *** n = [%d] ***\n", n);
+	print_stacks(arg);
+	ft_printf(" ***************************\n", n);
+	sleep(1);
+
+	if (n == 0 || n == 1)
+		return;
+	top_half_len = 0;
+
+	// small
+	int i = 0;
+	int median = find_median(arg->stack_a, n);
+	while (i++ < n)
+	{
+		if (*(int *)arg->stack_a->head->content < median)
+		{
+			push_stack(arg->stack_a, arg->stack_b);
+			top_half_len++;
+		}
+		else
+			rotate_stack(arg->stack_a);
+	}
+	i = 0;
+	while (i++ < n - top_half_len)
+		reverse_rotate_stack(arg->stack_a);
+	i = 0;
+	while (i++ < top_half_len)
+		push_stack(arg->stack_b, arg->stack_a);
+	// --------------------------
+	
+	quick_sort2(arg, top_half_len);
+	
+	// large
+	i = 0;
+	//rotate list 1 forward top_half_len times (larger half to front)
+	while (i++ < top_half_len)
+		rotate_stack(arg->stack_a);
+
+	//recursively call this on bigger half
+	quick_sort2(arg, n - top_half_len);
+
+	//reverse list back to original position
+    // rotate list 1 backward top_half_len times
+	i = 0;
+	while (i++ < top_half_len)
+		reverse_rotate_stack(arg->stack_a);
+	// --------------------------
 }
 
 
@@ -175,7 +235,7 @@ int		main(int argc, char *argv[])
 		print_stacks(&checker_arg);
 
 		// simple_sort(&checker_arg);
-		quick_sort(&checker_arg, checker_arg.max_size);
+		quick_sort2(&checker_arg, checker_arg.max_size);
 		
 		ft_printf("RESULTS\n");
 		print_stacks(&checker_arg);
