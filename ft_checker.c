@@ -6,11 +6,10 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/15 19:56:47 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:17:52 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_push_swap.h"
 
 int		read_user_input(t_checker *checker_arg)

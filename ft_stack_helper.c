@@ -6,11 +6,10 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:12:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/20 14:10:54 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:17:36 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_push_swap.h"
 
 void print_list_int(void *content)

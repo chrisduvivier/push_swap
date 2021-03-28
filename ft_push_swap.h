@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 14:41:48 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:51:15 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct	s_checker
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	int			max_size;
+	char		*logs;
 }				t_checker;
 
 void 	ft_stack_print(t_stack *stack);
@@ -53,5 +54,7 @@ void	print_stacks(t_checker *arg);
 void	quick_sort(t_checker *arg, int n);
 void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len);
 void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len);
+int		find_median(t_stack *stack, int size);
+void    insertion_sort(int *arr, int size);
 
 #endif

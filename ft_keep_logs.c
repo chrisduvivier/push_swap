@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_duplicate.c                                :+:      :+:    :+:   */
+/*   ft_keep_logs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 20:20:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 16:17:48 by cduvivie         ###   ########.fr       */
+/*   Created: 2021/03/28 16:16:35 by cduvivie          #+#    #+#             */
+/*   Updated: 2021/03/28 16:56:57 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-/*
-**  find duplicate in command line argument argv (so we skip 1st)
-**  O(n^2) runnnig time
-*/
-int     find_duplicate(int size, char *argv[])
+void    ft_stack_pa(t_checker *arg)
 {
-    int i = 1;
-    int j;
-    while (i < size)
-    {
-        j = i + 1;
-        while (j < size)
-        {
-            if (ft_strcmp(argv[i], argv[j]) == 0)
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	char *tmp;
+
+	tmp = ft_strjoin(arg->logs, "pa\n");
+	if (!tmp)
+		free_and_exit(arg);
+	free(arg->logs);
+	arg->logs = tmp;
+	push_stack(arg->stack_b, arg->stack_a);
+}
+
+void    ft_stack_pb(t_checker *arg)
+{
+	char *tmp;
+
+	tmp = ft_strjoin(arg->logs, "pa\n");
+	if (!tmp)
+		free_and_exit(arg);
+	free(arg->logs);
+	arg->logs = tmp;
+	push_stack(arg->stack_a, arg->stack_b);
 }

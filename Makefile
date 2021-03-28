@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/15 12:17:06 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/03/28 16:44:40 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ FILES = 	ft_checker_helper.c \
 			ft_stack_operations.c \
 			ft_stack_helper.c \
 			ft_checker_exit.c \
+			ft_quick_sort.c \
+			ft_keep_logs.c \
 
 OBJ	= $(FILES:%.c=%.o)
 

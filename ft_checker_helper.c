@@ -6,11 +6,10 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/20 23:26:53 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:01:46 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_push_swap.h"
 
 /*
@@ -86,4 +85,6 @@ void checker_arg_init(t_checker *checker_arg)
 	if ((checker_arg->stack_b = ft_stack_init()) == NULL)
 		error_exit(checker_arg);
 	checker_arg->max_size = 0;
+	if ((checker_arg->logs = ft_strdup('\0')) == NULL)
+		error_exit(checker_arg);
 }
