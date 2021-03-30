@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 16:17:52 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 01:54:03 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		read_user_input(t_checker *checker_arg)
 {
-	char *line;
-	int ret;
+	char	*line;
+	int		ret;
 
 	while ((ret = get_next_line(STDIN_FILENO, &line)) > 0)
 	{
@@ -30,7 +30,6 @@ int		read_user_input(t_checker *checker_arg)
 			free(line);
 			line = NULL;
 		}
-		ft_stack_print(checker_arg->stack_a);
 	}
 	if (ret < 0)
 		error_exit(checker_arg);
@@ -42,7 +41,7 @@ int		read_user_input(t_checker *checker_arg)
 **	`./checker 3 2 one 0` -> Error
 */
 
-int 	main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_checker checker_arg;
 

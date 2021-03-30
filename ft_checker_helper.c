@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 17:01:46 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:12:42 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 **	to integer, create linked-list node with content and push to stack.
 */
 
-int parse_content(char *content, t_checker *checker_arg)
+int		parse_content(char *content, t_checker *checker_arg)
 {
-	t_list *new_node;
-	int tmp;
-	void *copy_content;
+	t_list	*new_node;
+	int		tmp;
+	void	*copy_content;
 
 	if (ft_isdigit_string(content) == 0)
 		error_exit(checker_arg);
@@ -38,9 +38,9 @@ int parse_content(char *content, t_checker *checker_arg)
 	return (0);
 }
 
-int checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
+int		checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 {
-	int counter;
+	int		counter;
 
 	if (find_duplicate(argc, argv) != 0)
 		return (1);
@@ -59,10 +59,10 @@ int checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 **	calls error when the number exceeds INT limit.
 */
 
-int checker_atoi(const char *str, t_checker *checker_arg)
+int		checker_atoi(const char *str, t_checker *checker_arg)
 {
-	unsigned long result;
-	int sign;
+	unsigned long	result;
+	int				sign;
 
 	result = 0;
 	sign = 1;
@@ -78,13 +78,16 @@ int checker_atoi(const char *str, t_checker *checker_arg)
 	return (int)(sign * result);
 }
 
-void checker_arg_init(t_checker *checker_arg)
+void	checker_arg_init(t_checker *checker_arg)
 {
+	char *tmp;
+
+	tmp = "";
 	if ((checker_arg->stack_a = ft_stack_init()) == NULL)
 		error_exit(checker_arg);
 	if ((checker_arg->stack_b = ft_stack_init()) == NULL)
 		error_exit(checker_arg);
 	checker_arg->max_size = 0;
-	if ((checker_arg->logs = ft_strdup('\0')) == NULL)
+	if ((checker_arg->logs = ft_strdup(tmp)) == NULL)
 		error_exit(checker_arg);
 }

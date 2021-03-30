@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_helper.c                                  :+:      :+:    :+:   */
+/*   ft_keep_logs_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 14:12:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:37:40 by cduvivie         ###   ########.fr       */
+/*   Created: 2021/03/28 16:16:35 by cduvivie          #+#    #+#             */
+/*   Updated: 2021/03/30 15:13:57 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int	stack_is_sorted(t_stack *stack)
+void	ft_stack_rra(t_checker *arg)
 {
-	t_list	*cursor;
-	int		number;
-	int		next;
+	char *tmp;
 
-	cursor = stack->head;
-	while (cursor != NULL)
-	{
-		number = *((int *)cursor->content);
-		if (cursor->next != NULL)
-		{
-			next = *((int *)cursor->next->content);
-			if (number > next)
-				return (1);
-		}
-		cursor = cursor->next;
-	}
-	return (0);
+	tmp = ft_strjoin(arg->logs, "rra\n");
+	if (!tmp)
+		free_and_exit(arg);
+	free(arg->logs);
+	arg->logs = tmp;
+	reverse_rotate_stack(arg->stack_a);
+}
+
+void	ft_stack_rrb(t_checker *arg)
+{
+	char *tmp;
+
+	tmp = ft_strjoin(arg->logs, "rrb\n");
+	if (!tmp)
+		free_and_exit(arg);
+	free(arg->logs);
+	arg->logs = tmp;
+	reverse_rotate_stack(arg->stack_b);
 }

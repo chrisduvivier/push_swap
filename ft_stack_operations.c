@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:34 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 16:17:39 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:27:20 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **  Do nothing if there is only one or no elements.
 */
 
-void swap_stack(t_stack *stack)
+void	swap_stack(t_stack *stack)
 {
 	t_list *old_top;
 	t_list *new_top;
@@ -32,12 +32,12 @@ void swap_stack(t_stack *stack)
 }
 
 /*
-**  take the first element at the top of stack 1 and put it at the top of stack 2.
+**  take the first element at the top of stack 1 and put it at
+**	the top of stack 2.
 **  Do nothing if stack 1 is empty.
-**              ... Why would they call this "push"? NO F IDEA
 */
 
-void push_stack(t_stack *stack_src, t_stack *stack_dst)
+void	push_stack(t_stack *stack_src, t_stack *stack_dst)
 {
 	t_list *node;
 
@@ -51,7 +51,7 @@ void push_stack(t_stack *stack_src, t_stack *stack_dst)
 **  the last one.
 */
 
-void rotate_stack(t_stack *stack)
+void	rotate_stack(t_stack *stack)
 {
 	t_list *node;
 
@@ -70,7 +70,7 @@ void rotate_stack(t_stack *stack)
 **  The last element becomes the first one.
 */
 
-void reverse_rotate_stack(t_stack *stack)
+void	reverse_rotate_stack(t_stack *stack)
 {
 	t_list *node;
 
@@ -80,7 +80,7 @@ void reverse_rotate_stack(t_stack *stack)
 		while (node->next != NULL)
 		{
 			if (node->next->next == NULL)
-				break;
+				break ;
 			node = node->next;
 		}
 		stack->tail->next = stack->head;

@@ -6,13 +6,13 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:07:05 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 16:17:44 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:13:18 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void handle_operation_suite(t_checker *checker_arg, char *line)
+void	handle_operation_suite(t_checker *checker_arg, char *line)
 {
 	if (ft_strcmp(line, "ra") == 0)
 		rotate_stack(checker_arg->stack_a);
@@ -40,7 +40,7 @@ void handle_operation_suite(t_checker *checker_arg, char *line)
 	print_stacks(checker_arg);
 }
 
-void handle_operation(t_checker *checker_arg, char *line)
+void	handle_operation(t_checker *checker_arg, char *line)
 {
 	if (ft_strcmp(line, "sa") == 0)
 		swap_stack(checker_arg->stack_a);
@@ -59,11 +59,31 @@ void handle_operation(t_checker *checker_arg, char *line)
 		handle_operation_suite(checker_arg, line);
 }
 
+void	print_stacks_helper(t_list **lst, size_t *size, size_t max_num, int a)
+{
+	if ((*size) > 0 && (*size) == max_num)
+	{
+		if (a == 0)
+			ft_printf("|  %d  |", *(int *)(*lst)->content);
+		else
+			ft_printf("  %d  |\n", *(int *)(*lst)->content);
+		(*lst) = (*lst)->next;
+		(*size)--;
+	}
+	else
+	{
+		if (a == 0)
+			ft_printf("|     |");
+		else
+			ft_printf("     |\n");
+	}
+}
+
 void	print_stacks(t_checker *arg)
 {
 	size_t	max_num;
-	size_t 	size_a;
-	size_t 	size_b;
+	size_t	size_a;
+	size_t	size_b;
 	t_list	*lst_a;
 	t_list	*lst_b;
 
@@ -79,26 +99,8 @@ void	print_stacks(t_checker *arg)
 	ft_printf("|-----------|\n");
 	while (max_num > 0)
 	{
-		if (size_a > 0 && size_a == max_num)
-		{
-			ft_printf("|  %d  |", *(int *)lst_a->content);
-			lst_a = lst_a->next;
-			size_a--;
-		}
-		else
-		{
-			ft_printf("|     |");
-		}
-		if (size_b > 0 && size_b == max_num)
-		{
-			ft_printf("  %d  |\n", *(int *)lst_b->content);
-			lst_b = lst_b->next;
-			size_b--;
-		}
-		else
-		{
-			ft_printf("     |\n");
-		}
+		print_stacks_helper(&lst_a, &size_a, max_num, 0);
+		print_stacks_helper(&lst_b, &size_b, max_num, 1);
 		max_num--;
 	}
 	ft_printf("=============\n");

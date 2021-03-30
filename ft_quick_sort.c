@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 16:44:45 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:38:56 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 **	Function to sort an array using insertion sort
 */
 
-void    insertion_sort(int *arr, int size)
+void	insertion_sort(int *arr, int size)
 {
 	int i;
 	int key;
 	int j;
-	
+
 	i = 1;
 	while (i < size)
 	{
@@ -39,10 +39,10 @@ void    insertion_sort(int *arr, int size)
 
 int		find_median(t_stack *stack, int size)
 {
-	int	array[size];
-	t_list *cursor;
-	int count;
-	
+	int		array[size];
+	t_list	*cursor;
+	int		count;
+
 	count = 0;
 	cursor = stack->head;
 	while (cursor && count < size)
@@ -51,26 +51,27 @@ int		find_median(t_stack *stack, int size)
 		cursor = cursor->next;
 	}
 	insertion_sort(array, size);
-	return array[size/2];
+	return (array[size / 2]);
 }
+
+/*
+**	rotate list 1 forward top_half_len times (larger half to front)
+**	recursively call this on bigger half
+**	reverse list back to original position
+**	rotate list 1 backward top_half_len times
+*/
 
 void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len)
 {
 	int i;
 
 	i = 0;
-	//rotate list 1 forward top_half_len times (larger half to front)
 	while (i++ < *(top_half_len))
-		rotate_stack(arg->stack_a);
-
-	//recursively call this on bigger half
+		ft_stack_ra(arg);
 	quick_sort(arg, n - *(top_half_len));
-
-	//reverse list back to original position
-	// rotate list 1 backward top_half_len times
 	i = 0;
 	while (i++ < *(top_half_len))
-		reverse_rotate_stack(arg->stack_a);
+		ft_stack_rra(arg);
 }
 
 /*
@@ -91,31 +92,31 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 	{
 		if (*(int *)arg->stack_a->head->content < median)
 		{
-			push_stack(arg->stack_a, arg->stack_b);
+			ft_stack_pb(arg);
 			(*top_half_len)++;
 		}
 		else
-			rotate_stack(arg->stack_a);
+			ft_stack_ra(arg);
 	}
 	i = 0;
 	while (i++ < n - *(top_half_len))
-		reverse_rotate_stack(arg->stack_a);
+		ft_stack_rra(arg);
 	i = 0;
 	while (i++ < *(top_half_len))
-		push_stack(arg->stack_b, arg->stack_a);
+		ft_stack_pa(arg);
 }
 
-
 /*
-**	https://stackoverflow.com/questions/33704858/sorting-2-linked-list-of-50000-numbers-with-a-limited-set-of-operations
+**	https://stackoverflow.com/questions/33704858/
+**	sorting-2-linked-list-of-50000-numbers-with-a-limited-set-of-operations
 */
 
 void	quick_sort(t_checker *arg, int n)
-{	
+{
 	int top_half_len;
 
 	if (n == 0 || n == 1)
-		return;
+		return ;
 	top_half_len = 0;
 	quick_sort_helper_small(arg, n, &top_half_len);
 	quick_sort(arg, top_half_len);

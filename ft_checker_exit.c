@@ -6,13 +6,13 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 11:56:26 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/28 17:02:29 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:11:41 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int free_and_exit(t_checker *checker_arg)
+int		free_and_exit(t_checker *checker_arg)
 {
 	if (checker_arg->stack_a)
 	{
@@ -31,7 +31,7 @@ int free_and_exit(t_checker *checker_arg)
 	exit(0);
 }
 
-void error_exit(t_checker *checker_arg)
+void	error_exit(t_checker *checker_arg)
 {
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	free_and_exit(checker_arg);
