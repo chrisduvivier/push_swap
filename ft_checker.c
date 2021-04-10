@@ -6,18 +6,19 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 01:54:03 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:01:12 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int		read_user_input(t_checker *checker_arg)
+int	read_user_input(t_checker *checker_arg)
 {
 	char	*line;
 	int		ret;
 
-	while ((ret = get_next_line(STDIN_FILENO, &line)) > 0)
+	ret = get_next_line(STDIN_FILENO, &line);
+	while (ret > 0)
 	{
 		if (line && (ft_strcmp(line, "") == 0))
 		{
@@ -30,6 +31,7 @@ int		read_user_input(t_checker *checker_arg)
 			free(line);
 			line = NULL;
 		}
+		ret = get_next_line(STDIN_FILENO, &line);
 	}
 	if (ret < 0)
 		error_exit(checker_arg);
@@ -61,6 +63,7 @@ int		main(int argc, char *argv[])
 		else
 			ft_printf("KO\n");
 	}
-	system("leaks checker > leaks_out.txt");
+	free_and_exit(&checker_arg);
+	system("leaks checker > checker_leaks_out.txt");
 	return (0);
 }

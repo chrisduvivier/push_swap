@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:02:04 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:03:18 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,17 @@ void    reverse_rotate_stack(t_stack *stack);
 
 int		checker_parse_arg(int argc, char *argv[], 
 		t_checker *checker_arg);
+void	ft_stack_parser_push(t_stack *stack, t_list *node);
 int		free_and_exit(t_checker *checker_arg);
 void	error_exit(t_checker *checker_arg);
 
 void	print_stacks(t_checker *arg);
 
+void	simple_sort(t_checker *arg);
+void	sort_three_number(t_checker *arg);
+void    sort_top_two_number(t_checker *arg, char stack_type);
+void    sort_top_three_number(t_checker *arg);
+void    sort_less_than_five_number(t_checker *arg, int size);
 void	quick_sort(t_checker *arg, int n);
 void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len);
 void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len);
@@ -60,5 +66,7 @@ void    ft_stack_ra(t_checker *arg);
 void    ft_stack_rb(t_checker *arg);
 void    ft_stack_rra(t_checker *arg);
 void    ft_stack_rrb(t_checker *arg);
+void	ft_stack_sa(t_checker *arg);
+void	ft_stack_sb(t_checker *arg);
 
 #endif

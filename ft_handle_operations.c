@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:07:05 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:13:18 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 22:13:36 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	handle_operation_suite(t_checker *checker_arg, char *line)
 		free(line);
 		error_exit(checker_arg);
 	}
-	print_stacks(checker_arg);
 }
 
 void	handle_operation(t_checker *checker_arg, char *line)
@@ -54,9 +53,10 @@ void	handle_operation(t_checker *checker_arg, char *line)
 	else if (ft_strcmp(line, "pa") == 0)
 		push_stack(checker_arg->stack_b, checker_arg->stack_a);
 	else if (ft_strcmp(line, "pb") == 0)
-		push_stack(checker_arg->stack_a, checker_arg->stack_b);
+		push_stack(checker_arg->stack_a, checker_arg->stack_b);	
 	else
 		handle_operation_suite(checker_arg, line);
+	// print_stacks(checker_arg);
 }
 
 void	print_stacks_helper(t_list **lst, size_t *size, size_t max_num, int a)

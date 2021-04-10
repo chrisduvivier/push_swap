@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:38:56 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:32:44 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,13 @@ void	quick_sort(t_checker *arg, int n)
 
 	if (n == 0 || n == 1)
 		return ;
-	top_half_len = 0;
-	quick_sort_helper_small(arg, n, &top_half_len);
-	quick_sort(arg, top_half_len);
-	quick_sort_helper_large(arg, n, &top_half_len);
+	else if (n <= 3 || arg->max_size == 5 || arg->max_size == 4)
+		sort_less_than_five_number(arg, n);
+	else
+	{
+		top_half_len = 0;
+		quick_sort_helper_small(arg, n, &top_half_len);
+		quick_sort(arg, top_half_len);
+		quick_sort_helper_large(arg, n, &top_half_len);
+	}
 }

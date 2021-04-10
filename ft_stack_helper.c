@@ -6,11 +6,16 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:12:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:37:40 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/03/30 20:01:48 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+
+/*
+**	check if stack is sorted in ascending order
+**	(smallest number on top of stack)
+*/
 
 int	stack_is_sorted(t_stack *stack)
 {

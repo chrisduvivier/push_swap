@@ -52,6 +52,10 @@ Mkfile.old
 dkms.conf
 
 # Added Personally
+checker
+push_swap
 libft/*
+.vscode/*
 push_swap.en.subject.pdf
 .DS_Store
+42-push_swap/*
