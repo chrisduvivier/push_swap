@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/08 11:57:32 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:30:06 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	to integer, create linked-list node with content and push to stack.
 */
 
-int		parse_content(char *content, t_checker *checker_arg)
+int	parse_content(char *content, t_checker *checker_arg)
 {
 	t_list	*new_node;
 	int		tmp;
@@ -26,10 +26,12 @@ int		parse_content(char *content, t_checker *checker_arg)
 	if (ft_isdigit_string(content) == 0)
 		error_exit(checker_arg);
 	tmp = checker_atoi(content, checker_arg);
-	if (!(copy_content = malloc(sizeof(int))))
+	copy_content = malloc(sizeof(int));
+	if (!copy_content)
 		error_exit(checker_arg);
 	*((int *)copy_content) = tmp;
-	if (!(new_node = ft_lstnew((copy_content))))
+	new_node = ft_lstnew((copy_content));
+	if (!new_node)
 	{
 		free(copy_content);
 		error_exit(checker_arg);
@@ -38,7 +40,7 @@ int		parse_content(char *content, t_checker *checker_arg)
 	return (0);
 }
 
-int		checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
+int	checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 {
 	int		counter;
 
@@ -59,7 +61,7 @@ int		checker_parse_arg(int argc, char *argv[], t_checker *checker_arg)
 **	calls error when the number exceeds INT limit.
 */
 
-int		checker_atoi(const char *str, t_checker *checker_arg)
+int	checker_atoi(const char *str, t_checker *checker_arg)
 {
 	unsigned long	result;
 	int				sign;
@@ -67,7 +69,12 @@ int		checker_atoi(const char *str, t_checker *checker_arg)
 	result = 0;
 	sign = 1;
 	if (*str == '-' || *str == '+')
-		sign = (*str++ == '-') ? -1 : 1;
+	{
+		if (*str++ == '-')
+			sign = -1;
+		else
+			sign = 1;
+	}
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
@@ -75,19 +82,22 @@ int		checker_atoi(const char *str, t_checker *checker_arg)
 			error_exit(checker_arg);
 		str++;
 	}
-	return (int)(sign * result);
+	return ((int)(sign * result));
 }
 
 void	checker_arg_init(t_checker *checker_arg)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = "";
-	if ((checker_arg->stack_a = ft_stack_init()) == NULL)
+	checker_arg->stack_a = ft_stack_init();
+	if (checker_arg->stack_a == NULL)
 		error_exit(checker_arg);
-	if ((checker_arg->stack_b = ft_stack_init()) == NULL)
+	checker_arg->stack_b = ft_stack_init();
+	if (checker_arg->stack_b == NULL)
 		error_exit(checker_arg);
 	checker_arg->max_size = 0;
-	if ((checker_arg->logs = ft_strdup(tmp)) == NULL)
+	checker_arg->logs = ft_strdup(tmp);
+	if (checker_arg->logs == NULL)
 		error_exit(checker_arg);
 }

@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:34 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:27:20 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/11 17:19:24 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 void	swap_stack(t_stack *stack)
 {
-	t_list *old_top;
-	t_list *new_top;
+	t_list	*old_top;
+	t_list	*new_top;
 
 	if (stack->head && stack->size > 1)
 	{
@@ -39,7 +39,7 @@ void	swap_stack(t_stack *stack)
 
 void	push_stack(t_stack *stack_src, t_stack *stack_dst)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = ft_stack_pop(stack_src);
 	if (node != NULL)
@@ -53,7 +53,7 @@ void	push_stack(t_stack *stack_src, t_stack *stack_dst)
 
 void	rotate_stack(t_stack *stack)
 {
-	t_list *node;
+	t_list	*node;
 
 	if (stack->head && stack->size > 1)
 	{
@@ -72,7 +72,7 @@ void	rotate_stack(t_stack *stack)
 
 void	reverse_rotate_stack(t_stack *stack)
 {
-	t_list *node;
+	t_list	*node;
 
 	if (stack->head && stack->size > 1)
 	{

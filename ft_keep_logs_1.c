@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:16:35 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:13:43 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:31:16 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stack_ra(t_checker *arg)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(arg->logs, "ra\n");
 	if (!tmp)
@@ -26,7 +26,7 @@ void	ft_stack_ra(t_checker *arg)
 
 void	ft_stack_rb(t_checker *arg)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(arg->logs, "rb\n");
 	if (!tmp)
@@ -38,7 +38,7 @@ void	ft_stack_rb(t_checker *arg)
 
 void	ft_stack_pa(t_checker *arg)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(arg->logs, "pa\n");
 	if (!tmp)
@@ -50,7 +50,7 @@ void	ft_stack_pa(t_checker *arg)
 
 void	ft_stack_pb(t_checker *arg)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(arg->logs, "pb\n");
 	if (!tmp)

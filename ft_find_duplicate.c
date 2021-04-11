@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:20:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:39:15 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:30:15 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 **  O(n^2) runnnig time
 */
 
-int		find_duplicate(int size, char *argv[])
+int	find_duplicate(int size, char *argv[])
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (i < size)

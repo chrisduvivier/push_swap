@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/01 21:32:44 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:38:28 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 void	insertion_sort(int *arr, int size)
 {
-	int i;
-	int key;
-	int j;
+	int	i;
+	int	key;
+	int	j;
 
 	i = 1;
 	while (i < size)
@@ -37,20 +37,24 @@ void	insertion_sort(int *arr, int size)
 	}
 }
 
-int		find_median(t_stack *stack, int size)
+int	find_median(t_checker *arg, t_stack *stack, int size)
 {
-	int		array[size];
+	int		*array;
 	t_list	*cursor;
 	int		count;
 
 	count = 0;
 	cursor = stack->head;
+	array = malloc(sizeof(int) * size);
+	if (!array)
+		free_and_exit(arg);
 	while (cursor && count < size)
 	{
 		array[count++] = *(int *)cursor->content;
 		cursor = cursor->next;
 	}
 	insertion_sort(array, size);
+	free(array);
 	return (array[size / 2]);
 }
 
@@ -63,7 +67,7 @@ int		find_median(t_stack *stack, int size)
 
 void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i++ < *(top_half_len))
@@ -83,11 +87,11 @@ void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len)
 
 void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 {
-	int i;
-	int median;
+	int	i;
+	int	median;
 
 	i = 0;
-	median = find_median(arg->stack_a, n);
+	median = find_median(arg, arg->stack_a, n);
 	while (i++ < n)
 	{
 		if (*(int *)arg->stack_a->head->content < median)
@@ -113,7 +117,7 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 
 void	quick_sort(t_checker *arg, int n)
 {
-	int top_half_len;
+	int	top_half_len;
 
 	if (n == 0 || n == 1)
 		return ;

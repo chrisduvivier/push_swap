@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/03/31 01:15:27 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/04/10 17:21:42 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ FILES = 	ft_checker_helper.c \
 			ft_quick_sort.c \
 			ft_simple_sort.c \
 			ft_sort_five.c \
+			ft_sort_three.c \
 			ft_keep_logs_1.c \
 			ft_keep_logs_2.c \
 

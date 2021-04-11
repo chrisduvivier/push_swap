@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/08 12:01:12 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:29:29 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	read_user_input(t_checker *checker_arg)
 **	`./checker 3 2 one 0` -> Error
 */
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_checker checker_arg;
+	t_checker	checker_arg;
 
 	checker_arg_init(&checker_arg);
 	if (argc > 1)
@@ -55,8 +55,8 @@ int		main(int argc, char *argv[])
 			error_exit(&checker_arg);
 		}
 		read_user_input(&checker_arg);
-		if (stack_is_sorted(checker_arg.stack_a) == 0 &&
-			!(checker_arg.stack_b->head) && checker_arg.stack_b->size == 0)
+		if (stack_is_sorted(checker_arg.stack_a) == 0
+			&& !(checker_arg.stack_b->head) && checker_arg.stack_b->size == 0)
 		{
 			ft_printf("OK\n");
 		}

@@ -6,13 +6,13 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 11:56:26 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/03/30 15:11:41 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:26:04 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int		free_and_exit(t_checker *checker_arg)
+int	free_and_exit(t_checker *checker_arg)
 {
 	if (checker_arg->stack_a)
 	{
