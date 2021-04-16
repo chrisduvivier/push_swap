@@ -10,55 +10,50 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME_EXEC_1 := checker
-NAME_EXEC_2 := push_swap
+CHECKER		:=	checker
+PUSH_SWAP	:=	push_swap
 
-CC = gcc
-CFLAGS = -I. -c
-OPTIONS = -Wall -Wextra -Werror
-RM = /bin/rm -f
+CC 			:=	gcc
+CFLAGS	 	:=	-Wall -Wextra -Werror
+RM 			:=	/bin/rm -f
 
-LIBFT_DIR = libft/
+LIBFT		:= libft/libft.a
 
 # C filenames of the project
-FILES = 	ft_checker_helper.c \
-			ft_find_duplicate.c \
-			ft_handle_operations.c \
-			ft_stack_operations.c \
-			ft_stack_helper.c \
-			ft_checker_exit.c \
-			ft_quick_sort.c \
-			ft_simple_sort.c \
-			ft_sort_five.c \
-			ft_sort_three.c \
-			ft_keep_logs_1.c \
-			ft_keep_logs_2.c \
+SRCS 		:= 	ft_checker_helper.c \
+				ft_find_duplicate.c \
+				ft_handle_operations.c \
+				ft_stack_operations.c \
+				ft_stack_helper.c \
+				ft_checker_exit.c \
+				ft_quick_sort.c \
+				ft_simple_sort.c \
+				ft_sort_five.c \
+				ft_sort_three.c \
+				ft_keep_logs_1.c \
+				ft_keep_logs_2.c \
 
-OBJ	= $(FILES:%.c=%.o)
+OBJ			:=	$(SRCS:%.c=%.o)
 
-all: $(NAME_EXEC_1) $(NAME_EXEC_2)
+all			:	$(CHECKER) $(PUSH_SWAP)
 
-$(NAME_EXEC_1): lib $(OBJ)
-	$(CC) $(OPTIONS) libft.a ft_checker.c $(FILES) -o $(NAME_EXEC_1)
+$(CHECKER)	:	$(OBJ) $(LIBFT)
+	@ $(CC) $(CFLAGS) ft_checker.c $(SRCS) -o $(CHECKER) $(LIBFT)
 	
-$(NAME_EXEC_2): lib $(OBJ)
-	$(CC) $(OPTIONS) libft.a ft_push_swap.c $(FILES) -o $(NAME_EXEC_2)
+$(PUSH_SWAP): 	$(OBJ) $(LIBFT)
+	@ $(CC) $(CFLAGS) ft_push_swap.c $(SRCS) -o $(PUSH_SWAP) $(LIBFT)
 
-$(OBJ): $(FILES)
-	@ $(CC) $(CFLAGS) $(FILES) -Iincludes
+$(LIBFT)	:
+	@ $(MAKE) -C ./libft
 
-lib:
-	@ $(MAKE) -C $(LIBFT_DIR) all
-	@ cp $(LIBFT_DIR)/libft.a ./
-
-clean:
+clean		:
 	@ $(RM) $(OBJ)
+	@ $(MAKE) -C ./libft clean
 
-fclean: clean
-	@ $(RM) $(NAME)
-	@ $(RM) libft.a
-	@ $(MAKE) -C $(LIBFT_DIR) fclean
+fclean		:	clean
+	@ $(RM) $(CHECKER) $(PUSH_SWAP)
+	@ $(MAKE) -C ./libft fclean
 
-re: fclean all
+re			: fclean all
 
-.PHONY: all clean fclean re
+.PHONY		: all clean fclean re

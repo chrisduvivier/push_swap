@@ -17,11 +17,16 @@
 # include <stdlib.h>
 # include <string.h>
 # include <limits.h>
+# include <stdint.h>
 
 # include "ft_printf/ft_printf.h"
 # include "get_next_line.h"
 
 # define SPACE_CHAR " \n\t\v\f\r"
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 256
+# endif
 
 typedef struct s_list
 {
