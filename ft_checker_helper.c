@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/16 19:43:02 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:31:52 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parse_content(char *content, t_checker *checker_arg)
 		free(copy_content);
 		error_exit(checker_arg);
 	}
-	stack_push_end(checker_arg->stack_a, new_node);
+	ft_stack_push_end(checker_arg->stack_a, new_node);
 	return (0);
 }
 
