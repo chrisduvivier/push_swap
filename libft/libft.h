@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:03:47 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/17 17:53:19 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:53:57 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,5 @@ t_stack				*ft_stack_init(void);
 void				ft_stack_push(t_stack *stack, t_list *node);
 t_list				*ft_stack_pop(t_stack *stack);
 void				ft_stack_push_end(t_stack *stack, t_list *node);
-
 
 #endif
