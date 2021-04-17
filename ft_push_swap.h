@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/11 17:23:37 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/16 19:42:46 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	checker_arg_init(t_checker *checker_arg);
 
 void	swap_stack(t_stack *stack);
 void	push_stack(t_stack *stack_src, t_stack *stack_dst);
+void	stack_push_end(t_stack *stack, t_list *node);
 void	rotate_stack(t_stack *stack);
 void	reverse_rotate_stack(t_stack *stack);
 

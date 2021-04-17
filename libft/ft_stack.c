@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 11:52:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/02 20:29:49 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/17 17:53:23 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,24 @@ t_list	*ft_stack_pop(t_stack *stack)
 		stack->tail = NULL;
 	stack->size--;
 	return (res);
+}
+
+/*
+** push to stack: append to the top (to head)
+*/
+
+void	ft_stack_push_end(t_stack *stack, t_list *node)
+{
+	t_list	*tmp;
+
+	tmp = NULL;
+	if (stack->size == 0 && stack->head == NULL)
+		ft_stack_push(stack, node);
+	else
+	{
+		tmp = stack->tail;
+		tmp->next = node;
+		stack->tail = node;
+		stack->size++;
+	}
 }
