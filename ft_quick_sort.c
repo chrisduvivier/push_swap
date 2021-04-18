@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/17 19:25:35 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/18 13:51:16 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len)
 	while (i++ < *(top_half_len))
 		ft_stack_ra(arg);
 	quick_sort(arg, n - *(top_half_len));
+	// ft_printf("quick_sort_helper_large: top_half_len=[%d]  n=[%d]\n", *(top_half_len), n);
 	i = 0;
 	while (i++ < *(top_half_len))
 		ft_stack_rra(arg);
@@ -92,6 +93,7 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 
 	i = 0;
 	median = find_median(arg, arg->stack_a, n);
+	// ft_printf("median = [%d]\n", median);
 	while (i++ < n)
 	{
 		if (*(int *)arg->stack_a->head->content < median)
@@ -103,8 +105,18 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 			ft_stack_ra(arg);
 	}
 	i = 0;
-	while (i++ < n - *(top_half_len))
-		ft_stack_rra(arg);
+	if ((n - *(top_half_len)) != (int)arg->stack_a->size)
+	{
+		if ((int)arg->stack_a->size / 2 < (n - *(top_half_len)))
+		{
+			i = n - *(top_half_len);
+			while (i++ < (int)arg->stack_a->size)
+				ft_stack_ra(arg);
+		}
+		else
+			while (i++ < n - *(top_half_len))	
+				ft_stack_rra(arg);
+	}
 	i = 0;
 	while (i++ < *(top_half_len))
 		ft_stack_pa(arg);
