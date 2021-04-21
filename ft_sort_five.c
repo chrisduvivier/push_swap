@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:14:45 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/10 17:57:20 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/21 13:22:14 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	sort_five_number_helper(t_checker *arg, int top_of_b, int *ra_size)
 	}
 }
 
+/*
+**	ONLY WHEN STACK SIZE ITSELF IS 5
+*/
+
 void	sort_five_number(t_checker *arg)
 {
 	int	top_of_b;
@@ -64,7 +68,7 @@ void	sort_five_number(t_checker *arg)
 	while (arg->stack_a->size > 3)
 		ft_stack_pb(arg);
 	if (arg->stack_b->size == 2)
-		sort_top_two_number(arg, 'b');
+		sort_two_number(arg, 'b');
 	sort_three_number(arg);
 	ra_size = 0;
 	top_of_b = *(int *)arg->stack_b->head->content;
@@ -83,8 +87,9 @@ void	sort_five_number(t_checker *arg)
 
 void	sort_less_than_five_number(t_checker *arg, int size)
 {
+	ft_printf("   sort_less_than_five_number  size=[%d] \n", size);
 	if (size == 2)
-		sort_top_two_number(arg, 'a');
+		sort_two_number(arg, 'a');
 	else if (size == 3)
 	{
 		if (arg->max_size == 3)
@@ -92,8 +97,13 @@ void	sort_less_than_five_number(t_checker *arg, int size)
 		else
 			sort_top_three_number(arg);
 	}
-	else
+	else if (arg->max_size == 5 || arg->max_size == 4)
 	{
 		sort_five_number(arg);
+	}
+	else
+	{
+		// ft_printf("=== sort_top_five_number ===\n");
+		sort_top_five_number(arg, size);
 	}
 }

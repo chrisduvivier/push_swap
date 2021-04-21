@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:07:05 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/10 16:30:56 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:06:46 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ void	print_stacks_helper(t_list **lst, size_t *size, size_t max_num, int a)
 	if ((*size) > 0 && (*size) == max_num)
 	{
 		if (a == 0)
-			ft_printf("|  %d  |", *(int *)(*lst)->content);
+			ft_printf("|   %d   |", *(int *)(*lst)->content);
 		else
-			ft_printf("  %d  |\n", *(int *)(*lst)->content);
+			ft_printf("   %d   |\n", *(int *)(*lst)->content);
 		(*lst) = (*lst)->next;
 		(*size)--;
 	}
 	else
 	{
 		if (a == 0)
-			ft_printf("|     |");
+			ft_printf("|      |");
 		else
-			ft_printf("     |\n");
+			ft_printf("      |\n");
 	}
 }
 
@@ -93,9 +93,9 @@ void	print_stacks(t_checker *arg)
 	max_num = arg->stack_a->size;
 	if (arg->stack_b->size > max_num)
 		max_num = arg->stack_b->size;
-	ft_printf("-------------\n");
-	ft_printf("|  A  |  B  |\n");
-	ft_printf("|-----------|\n");
+	ft_printf("-----------------\n");
+	ft_printf("|   A   |   B   |\n");
+	ft_printf("|---------------|\n");
 	while (max_num > 0)
 	{
 		print_stacks_helper(&lst_a, &size_a, max_num, 0);

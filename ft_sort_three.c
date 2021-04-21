@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:16:26 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/10 17:58:03 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 13:36:48 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 */
 
 /*
+**	ONLY FOR STACK A
 **	handles 3 pattern from top:
 **		3 2 1
 **		2 1 3
@@ -51,6 +52,7 @@ void	sort_top_three_number_helper_1(t_checker *arg, int top,
 }
 
 /*
+**	ONLY FOR STACK A
 **	handles 3 pattern from top:
 **		2 3 1
 **		1 3 2
@@ -76,6 +78,10 @@ void	sort_top_three_number_helper_2(t_checker *arg, int top,
 		ft_stack_rra(arg);
 	}
 }
+
+/*
+**	Sort top 3 number of stack A
+*/
 
 void	sort_top_three_number(t_checker *arg)
 {
@@ -129,6 +135,10 @@ void	sort_three_number_helper(t_checker *arg, int top, int mid, int bottom)
 		}
 	}
 }
+
+/*
+**	only when stack's size is 3
+*/
 
 void	sort_three_number(t_checker *arg)
 {

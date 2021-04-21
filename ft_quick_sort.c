@@ -6,14 +6,14 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/18 13:51:16 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 15:46:26 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 /*
-**	Function to sort an array using insertion sort
+**	Function to sort an ARRAY using insertion sort
 */
 
 void	insertion_sort(int *arr, int size)
@@ -133,8 +133,13 @@ void	quick_sort(t_checker *arg, int n)
 
 	if (n == 0 || n == 1)
 		return ;
-	else if (n <= 3 || arg->max_size == 5 || arg->max_size == 4)
-		sort_less_than_five_number(arg, n);
+	else if (n <= 5)
+	{
+		if (top_n_stack_is_sorted(arg->stack_a, n) == 1)
+			sort_less_than_five_number(arg, n);
+		else
+			ft_printf("top_n_stack_is_sorted: top [%d] of stack already sorted\n", n);
+	}
 	else
 	{
 		top_half_len = 0;

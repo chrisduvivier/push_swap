@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/17 18:31:52 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:42:46 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	checker_arg_init(t_checker *checker_arg)
 	checker_arg->logs = ft_strdup(tmp);
 	if (checker_arg->logs == NULL)
 		error_exit(checker_arg);
+	checker_arg->chunk_array = NULL;
 }

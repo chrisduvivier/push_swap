@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 11:56:26 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/10 16:26:04 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:42:59 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	free_and_exit(t_checker *checker_arg)
 	}
 	if (checker_arg->logs)
 		free(checker_arg->logs);
+	if (checker_arg->chunk_array)
+		free(checker_arg->chunk_array);
 	exit(0);
 }
 

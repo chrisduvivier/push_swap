@@ -6,33 +6,11 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 22:05:58 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/10 17:55:38 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/20 15:43:09 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-void	sort_top_two_number(t_checker *arg, char stack_type)
-{
-	t_list	*cursor;
-
-	if (stack_type == 'a')
-	{
-		cursor = arg->stack_a->head;
-		if (*(int *)cursor->content > *(int *)cursor->next->content)
-		{
-			ft_stack_sa(arg);
-		}
-	}
-	else
-	{
-		cursor = arg->stack_b->head;
-		if (*(int *)cursor->content > *(int *)cursor->next->content)
-		{
-			ft_stack_sb(arg);
-		}
-	}
-}
 
 /*
 **	Repeat until the input_stack is not empty
@@ -47,20 +25,51 @@ void	simple_sort(t_checker *arg)
 
 	while (arg->stack_a->size > 0)
 	{
-		push_stack(arg->stack_a, arg->stack_b);
+		ft_stack_pb(arg);
 	}
 	while (arg->stack_b->size > 0)
 	{
 		tmp = *(int *)arg->stack_b->head->content;
-		push_stack(arg->stack_b, arg->stack_a);
-		rotate_stack(arg->stack_a);
+		ft_stack_pa(arg);
+		if (arg->stack_a->size > 1)
+			ft_stack_ra(arg);
 		while (arg->stack_a->size > 0
 			&& (*(int *)arg->stack_a->head->content <= tmp))
 		{
 			if (tmp == *(int *)arg->stack_a->head->content)
 				break ;
-			push_stack(arg->stack_a, arg->stack_b);
+			ft_stack_pb(arg);
 		}
-		reverse_rotate_stack(arg->stack_a);
+		if (arg->stack_a->size > 1)
+			ft_stack_rra(arg);
+	}
+}
+
+
+/*
+**	Simple sort with defined number of elements
+*/
+
+void	simple_sort_n(t_checker *arg)
+{
+	int	tmp;
+
+	while (arg->stack_a->size > 0)
+	{
+		ft_stack_pb(arg);
+	}
+	while (arg->stack_b->size > 0)
+	{
+		tmp = *(int *)arg->stack_b->head->content;
+		ft_stack_pa(arg);
+		ft_stack_ra(arg);
+		while (arg->stack_a->size > 0
+			&& (*(int *)arg->stack_a->head->content <= tmp))
+		{
+			if (tmp == *(int *)arg->stack_a->head->content)
+				break ;
+			ft_stack_pb(arg);
+		}
+		ft_stack_rra(arg);
 	}
 }
