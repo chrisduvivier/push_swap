@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:50:04 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/22 21:47:21 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/22 22:40:09 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	fill_chunk_data(t_checker *arg, t_list *head, int size_chunk)
 	arg->chunk_size++;
 }
 
+/*
+**	push all element smaller than median to B.
+*/
+
 int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 {
 	int i;
@@ -63,7 +67,7 @@ int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 	print_stacks(arg);
 	while (i++ < size_stack) //iterate through all
 	{
-		if (*(int *)arg->stack_a->head->content > median) //compare
+		if (*(int *)arg->stack_a->head->content < median) //compare
 		{
 			ft_stack_pb(arg);	//push to b
 			b_size++;
@@ -74,6 +78,8 @@ int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 	fill_chunk_data(arg, arg->stack_a->head, size_stack - b_size);	//left chunk
 	fill_chunk_data(arg, arg->stack_b->head, b_size);					//right chunk
 	
+
+	// TODO: optimize by looking which way is faster
 	i = 0;
 	while (i++ < (size_stack - b_size))		//bring back to position
 		ft_stack_rra(arg);
@@ -236,9 +242,9 @@ void	push_swap_sort_big_list(t_checker *arg)
 				size_chunk = push_swap_sort_big_list_add_chunk(arg, size_chunk);
 				push_swap_sort_small_list(arg, size_chunk);
 			}
-			i = 0;
-			while (i++ < size_chunk)
-				ft_stack_ra(arg);
+			// i = 0;
+			// while (i++ < size_chunk)
+			// 	ft_stack_ra(arg);
 			print_stacks(arg);
 			// print_stacks(arg);
 			size_chunk = count_number_of_element_in_chunk(arg, arg->stack_b);
