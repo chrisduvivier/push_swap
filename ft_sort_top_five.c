@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:14:45 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/21 02:42:31 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:41:21 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sort_top_five_number(t_checker *arg, int size)
 	int j = 0;
 	ra_size = size;
 	median = find_median(arg, arg->stack_a, size);
-	ft_printf("find_median of size=%d -> median= %d)\n", size, median);
+	// ft_printf("find_median of size=%d -> median= %d)\n", size, median);
 
 	while (i++ < size)
 	{
@@ -43,10 +43,10 @@ void	sort_top_five_number(t_checker *arg, int size)
 	}
 	while (j-- > 0)
 		ft_stack_rra(arg);
-	ft_printf("// sort left part -> if (ra_size == %d)\n", ra_size);
+	// ft_printf("// sort left part -> if (ra_size == %d)\n", ra_size);
 	if (ra_size == 3)
 	{
-		ft_printf("NEXT: sort_top_three_number\n");
+		// ft_printf("NEXT: sort_top_three_number\n");
 		sort_top_three_number(arg);	//sort top stack A
 	}
 	else

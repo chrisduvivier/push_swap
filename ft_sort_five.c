@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 01:14:45 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/21 13:22:14 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:41:03 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	sort_five_number(t_checker *arg)
 
 void	sort_less_than_five_number(t_checker *arg, int size)
 {
-	ft_printf("   sort_less_than_five_number  size=[%d] \n", size);
+	// ft_printf("   sort_less_than_five_number  size=[%d] \n", size);
 	if (size == 2)
 		sort_two_number(arg, 'a');
 	else if (size == 3)
