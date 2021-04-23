@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 22:05:58 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/20 15:43:09 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:41:59 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	simple_sort(t_checker *arg)
 			ft_stack_rra(arg);
 	}
 }
-
 
 /*
 **	Simple sort with defined number of elements

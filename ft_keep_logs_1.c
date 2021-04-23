@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:16:35 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/22 12:39:55 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:33:51 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,60 +59,3 @@ void	ft_stack_pb(t_checker *arg)
 	arg->logs = tmp;
 	push_stack(arg->stack_a, arg->stack_b);
 }
-
-
-// void	ft_stack_ra(t_checker *arg)
-// {
-// 	char	*tmp;
-
-// 	tmp = ft_strjoin(arg->logs, "ra\n");
-// 	if (!tmp)
-// 		free_and_exit(arg);
-// 	free(arg->logs);
-// 	arg->logs = tmp;
-// 	rotate_stack(arg->stack_a);
-// 	print_stacks(arg);
-// 	// sleep(1);
-// }
-
-// void	ft_stack_rb(t_checker *arg)
-// {
-// 	char	*tmp;
-
-// 	tmp = ft_strjoin(arg->logs, "rb\n");
-// 	if (!tmp)
-// 		free_and_exit(arg);
-// 	free(arg->logs);
-// 	arg->logs = tmp;
-// 	rotate_stack(arg->stack_b);
-// 	print_stacks(arg);
-// 	// sleep(1);
-// }
-
-// void	ft_stack_pa(t_checker *arg)
-// {
-// 	char	*tmp;
-
-// 	tmp = ft_strjoin(arg->logs, "pa\n");
-// 	if (!tmp)
-// 		free_and_exit(arg);
-// 	free(arg->logs);
-// 	arg->logs = tmp;
-// 	push_stack(arg->stack_b, arg->stack_a);
-// 	print_stacks(arg);
-// 	// sleep(1);
-// }
-
-// void	ft_stack_pb(t_checker *arg)
-// {
-// 	char	*tmp;
-
-// 	tmp = ft_strjoin(arg->logs, "pb\n");
-// 	if (!tmp)
-// 		free_and_exit(arg);
-// 	free(arg->logs);
-// 	arg->logs = tmp;
-// 	push_stack(arg->stack_a, arg->stack_b);
-// 	print_stacks(arg);
-// 	// sleep(1);
-// }

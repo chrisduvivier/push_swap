@@ -6,7 +6,7 @@
 #    By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/07 21:00:40 by cduvivie          #+#    #+#              #
-#    Updated: 2021/04/20 19:56:31 by cduvivie         ###   ########.fr        #
+#    Updated: 2021/04/23 17:59:44 by cduvivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,13 @@ SRCS 		:= 	ft_checker_helper.c \
 				ft_keep_logs_1.c \
 				ft_keep_logs_2.c \
 				ft_simple_sort.c \
-				ft_quick_sort.c \
 				ft_sort_two.c \
 				ft_sort_three.c \
 				ft_sort_five.c \
 				ft_sort_top_five.c \
 				ft_push_swap_sort.c \
+				ft_push_swap_sort_helper.c \
+				ft_sort_helper.c \
 
 OBJ			:=	$(SRCS:%.c=%.o)
 

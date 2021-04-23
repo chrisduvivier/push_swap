@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/20 16:49:47 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:34:11 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char *argv[])
 		if (stack_is_sorted(checker_arg.stack_a) != 0)
 		{
 			push_swap_sort(&checker_arg, checker_arg.max_size);
-			// quick_sort(&checker_arg, checker_arg.max_size);
-			// simple_sort(&checker_arg);
 			if (stack_is_sorted(checker_arg.stack_a) == 0
 				&& checker_arg.stack_b->head == NULL
 				&& checker_arg.stack_b->size == 0)

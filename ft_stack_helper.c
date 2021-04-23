@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:12:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/23 17:07:43 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:35:34 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	stack_is_sorted(t_stack *stack)
 	}
 	return (0);
 }
-
 
 /*
 **	check if the top N element of the stack is sorted in ascending order

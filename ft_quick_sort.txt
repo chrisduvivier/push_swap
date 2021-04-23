@@ -6,57 +6,11 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/20 15:46:26 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:48:17 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-/*
-**	Function to sort an ARRAY using insertion sort
-*/
-
-void	insertion_sort(int *arr, int size)
-{
-	int	i;
-	int	key;
-	int	j;
-
-	i = 1;
-	while (i < size)
-	{
-		key = arr[i];
-		j = i - 1;
-		while (j >= 0 && arr[j] > key)
-		{
-			arr[j + 1] = arr[j];
-			j = j - 1;
-		}
-		arr[j + 1] = key;
-		i++;
-	}
-}
-
-int	find_median(t_checker *arg, t_stack *stack, int size)
-{
-	int		*array;
-	t_list	*cursor;
-	int		count;
-
-	count = 0;
-	cursor = stack->head;
-	array = malloc(sizeof(int) * size);
-	if (!array)
-		free_and_exit(arg);
-	while (cursor && count < size)
-	{
-		array[count++] = *(int *)cursor->content;
-		cursor = cursor->next;
-	}
-	insertion_sort(array, size);
-	free(array);
-	return (array[size / 2]);
-}
 
 /*
 **	rotate list 1 forward top_half_len times (larger half to front)
@@ -73,7 +27,6 @@ void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len)
 	while (i++ < *(top_half_len))
 		ft_stack_ra(arg);
 	quick_sort(arg, n - *(top_half_len));
-	// ft_printf("quick_sort_helper_large: top_half_len=[%d]  n=[%d]\n", *(top_half_len), n);
 	i = 0;
 	while (i++ < *(top_half_len))
 		ft_stack_rra(arg);
@@ -93,7 +46,6 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 
 	i = 0;
 	median = find_median(arg, arg->stack_a, n);
-	// ft_printf("median = [%d]\n", median);
 	while (i++ < n)
 	{
 		if (*(int *)arg->stack_a->head->content < median)
@@ -114,7 +66,7 @@ void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len)
 				ft_stack_ra(arg);
 		}
 		else
-			while (i++ < n - *(top_half_len))	
+			while (i++ < n - *(top_half_len))
 				ft_stack_rra(arg);
 	}
 	i = 0;
@@ -137,8 +89,6 @@ void	quick_sort(t_checker *arg, int n)
 	{
 		if (top_n_stack_is_sorted(arg->stack_a, n) == 1)
 			sort_less_than_five_number(arg, n);
-		else
-			ft_printf("top_n_stack_is_sorted: top [%d] of stack already sorted\n", n);
 	}
 	else
 	{

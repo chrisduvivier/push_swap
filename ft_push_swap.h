@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/23 17:08:00 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 18:00:11 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_PUSH_SWAP_H
 
 # include "libft/libft.h"
+
+# define SORT_SIZE 5
 
 typedef struct s_chunk
 {
@@ -28,7 +30,7 @@ typedef struct s_checker
 	t_stack	*stack_b;
 	int		max_size;
 	char	*logs;
-	t_chunk *chunk_array;
+	t_chunk	*chunk_array;
 	int		chunk_size;
 }			t_checker;
 
@@ -71,19 +73,19 @@ void	sort_two_number_b(t_checker *arg);
 void	sort_top_three_number(t_checker *arg);
 void	sort_less_than_five_number(t_checker *arg, int size);
 
-void	quick_sort(t_checker *arg, int n);
-void	quick_sort_helper_large(t_checker *arg, int n, int *top_half_len);
-void	quick_sort_helper_small(t_checker *arg, int n, int *top_half_len);
 int		find_median(t_checker *arg, t_stack *stack, int size);
 void	insertion_sort(int *arr, int size);
-
 
 /*
 **	new attempt
 */
 
 void	push_swap_sort(t_checker *arg, int size);
-
+void	fill_chunk_data(t_checker *arg, t_list *head, int size_chunk);
+void	split_stack_a_with_median_helper(t_checker *arg, int rra_needed);
+int		split_stack_a_with_median(t_checker *arg, int median, int size_stack);
+int		create_chunk(t_checker *arg, t_stack *stack_a, int size_to_split);
+int		find_group_of_chunk(t_checker *arg, int number);
 
 void	ft_stack_pa(t_checker *arg);
 void	ft_stack_pb(t_checker *arg);
