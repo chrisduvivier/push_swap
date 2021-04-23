@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:50:04 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/22 22:40:09 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:48:44 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ void	fill_chunk_data(t_checker *arg, t_list *head, int size_chunk)
 
 int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 {
-	int i;
-	int b_size;
+	int		i;
+	int		b_size;
+	size_t	number_of_rra_needed;
 	
 	i = 0;
 	b_size = 0;
-	ft_printf("\nBEFORE split median");
-	print_stacks(arg);
+	ft_printf("median=[%d]\n", median);
+	// ft_printf("\nBEFORE split median");
+	// print_stacks(arg);
 	while (i++ < size_stack) //iterate through all
 	{
 		if (*(int *)arg->stack_a->head->content < median) //compare
@@ -75,33 +77,108 @@ int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 		else
 			ft_stack_ra(arg);	//less than median, so just rotate and look at next
 	}
+	number_of_rra_needed = (size_t)(size_stack - b_size);
 	fill_chunk_data(arg, arg->stack_a->head, size_stack - b_size);	//left chunk
 	fill_chunk_data(arg, arg->stack_b->head, b_size);					//right chunk
 	
 
 	// TODO: optimize by looking which way is faster
 	i = 0;
-	while (i++ < (size_stack - b_size))		//bring back to position
-		ft_stack_rra(arg);
+	if ((arg->stack_a->size - (number_of_rra_needed)) > (number_of_rra_needed))
+	{
+		while (i++ < (int)(number_of_rra_needed))		//bring back to position
+			ft_stack_rra(arg);
+	}
+	else
+	{
+		while (i++ < (int)(arg->stack_a->size - number_of_rra_needed))		//bring back to position
+			ft_stack_ra(arg);
+	}
 	
-	ft_printf("\nAFTER split median");
-	print_stacks(arg);
+	// ft_printf("\nAFTER split median");
+	// print_stacks(arg);
 	
 	return (size_stack - b_size);
 }
 
+/*
+**	push all element bigger than median in stack B to A.
+**	return the size of the chunk added to the stack_a (a_size)
+*/
 
-int	create_chunk(t_checker *arg, t_stack *stack_a, int size_to_split)
+int	split_stack_b_with_median(t_checker *arg, int median, int size_stack)
+{
+	int		i;
+	int		a_size;
+	size_t	number_of_rrb_needed;
+	
+	i = 0;
+	a_size = 0;
+	ft_printf("median=[%d]\n", median);
+	while (i++ < size_stack) //iterate through all
+	{
+		if (*(int *)arg->stack_b->head->content >= median) //compare
+		{
+			ft_stack_pa(arg);	//push to a
+			a_size++;
+		}
+		else
+			ft_stack_rb(arg);	//less than median, so just rotate and look at next
+	}
+	number_of_rrb_needed = (size_t)(size_stack - a_size);
+	fill_chunk_data(arg, arg->stack_b->head, size_stack - a_size);	//left chunk
+	fill_chunk_data(arg, arg->stack_a->head, a_size);					//right chunk
+	
+
+	// TODO: optimize by looking which way is faster
+	i = 0;
+	if ((arg->stack_b->size - (number_of_rrb_needed)) > (number_of_rrb_needed))
+	{
+		while (i++ < (int)(number_of_rrb_needed))		//bring back to position
+			ft_stack_rrb(arg);
+	}
+	else
+	{
+		while (i++ < (int)(arg->stack_b->size - number_of_rrb_needed))		//bring back to position
+			ft_stack_rb(arg);
+	}
+	
+	// ft_printf("\nAFTER split median");
+	// print_stacks(arg);
+	
+	return (a_size);
+}
+
+int	create_chunk_stack_a(t_checker *arg, t_stack *stack_a, int size_to_split)
 {
 	int 	median;
 	int		splitted_size_a;
 
-	ft_printf("~~~~ create_chunk ~~~~\n");
+	ft_printf("~~~~ create_chunk_stack_a ~~~~\n");
 	//split stack A into 2
+	print_stacks(arg);
 	median = find_median(arg, stack_a, size_to_split);
 	splitted_size_a = split_stack_a_with_median(arg, median, size_to_split);
-	return (splitted_size_a);
+	print_stacks(arg);
 	ft_printf("~~~~ ~~~~~~~~~~~~ ~~~~\n");
+	return (splitted_size_a);
+
+}
+
+int	create_chunk_stack_b(t_checker *arg, t_stack *stack_b, int size_to_split)
+{
+	int 	median;
+	int		new_chunk_size_of_a;
+
+	ft_printf("~~~~ create_chunk_stack_b ~~~~\n");
+	//split stack A into 2
+	print_stacks(arg);
+	ft_printf("create_chunk_stack_b***** size_to_split=[%d]\n");
+	median = find_median(arg, stack_b, size_to_split);
+	new_chunk_size_of_a = split_stack_b_with_median(arg, median, size_to_split);
+	print_stacks(arg);
+	ft_printf("~~~~ ~~~~~~~~~~~~ ~~~~\n");
+	return (new_chunk_size_of_a);
 
 }
 
@@ -148,13 +225,13 @@ int	count_number_of_element_in_chunk(t_checker *arg, t_stack *stack)
 	int	chunk_index;
 	int count;
 
-	ft_printf("count_number_of_element_in_chunk: \n");
+	// ft_printf("count_number_of_element_in_chunk: \n");
 
 	count = 0;
 	if (stack->size != 0 && stack->head != NULL)
 	{
 		chunk_index = find_group_of_chunk(arg, *(int *)stack->head->content);
-		ft_printf("[%d] is in chunk [%d] | size=[%d]\n", *(int *)stack->head->content, chunk_index, arg->chunk_array[chunk_index].num_elements);
+		// ft_printf("[%d] is in chunk [%d] | size=[%d]\n", *(int *)stack->head->content, chunk_index, arg->chunk_array[chunk_index].num_elements);
 		if (chunk_index > arg->chunk_size)
 		{
 			ft_printf("ERROR: count_number_of_element_in_chunk\n");
@@ -170,8 +247,8 @@ void	push_swap_sort_small_list(t_checker *arg, int n)
 {
 	if (top_n_stack_is_sorted(arg->stack_a, n) == 1)
 		sort_less_than_five_number(arg, n);
-	ft_printf("SORTED TOP [%d] of stack_a\n", n);
-	print_stacks(arg);
+	// ft_printf("SORTED TOP [%d] of stack_a\n", n);
+	// print_stacks(arg);
 }
 
 /*
@@ -183,17 +260,31 @@ int	push_swap_sort_big_list_add_chunk(t_checker *arg, int size_of_top_a)
 {
 	while (size_of_top_a > SORT_SIZE)
 	{
-		size_of_top_a = create_chunk(arg, arg->stack_a, size_of_top_a);
-
-		// TOCHECK;     when pushed back from B, wplit based on median,
-		//				is the stack_a actually brought back to its origialposition????
-		//				might need to rra before
-
-		// size_of_top_a = count_number_of_element_in_chunk(arg, arg->stack_a);
+		size_of_top_a = create_chunk_stack_a(arg, arg->stack_a, size_of_top_a);
 	}
-	print_chunks(arg);			// check
+	// print_chunks(arg);			// check
 	// print_stacks(arg);
 	return (size_of_top_a);
+}
+
+/*
+**	if the chunk of the top of stack_b is bigger SORT_SIZE:
+**	split and create 2 chunks from the top of stack_b.
+*/
+
+int	push_swap_sort_add_chunk_from_stack_b(t_checker *arg, int size_of_top_b)
+{
+	int size_of_top_a;
+
+	if (size_of_top_b > SORT_SIZE)
+	{
+		size_of_top_a = create_chunk_stack_b(arg, arg->stack_b, size_of_top_b);
+	}
+	if (size_of_top_b <= SORT_SIZE)
+	{
+		// size_of_top_b = 
+	}
+	return (size_of_top_b);
 }
 
 int	rotate_for_next_chunk(t_checker *arg)
@@ -222,32 +313,39 @@ void	push_swap_sort_big_list(t_checker *arg)
 		size_chunk = count_number_of_element_in_chunk(arg, arg->stack_b);
 		while (size_chunk != 0)
 		{
-			i = 0;
-			ft_printf("size_chunk = [%d] -> start pa\n", size_chunk);
-			while (i++ < size_chunk)
-				ft_stack_pa(arg);
-			if (size_chunk <= SORT_SIZE)
+			if (size_chunk > SORT_SIZE)
 			{
-				push_swap_sort_small_list(arg, size_chunk);
-				// if (stack_is_sorted(arg->stack_a) == 0)
-				// 	break;
 
-				// TO DO
-				// FUNCTIOn TO CHECK WHERE NEXT CHUNK WIL COME
-				
-				// int adjustement = rotate_for_next_chunk(arg);
+				// ft_printf("&&&&&&&&&&&&&&\n");
+				print_stacks(arg);
+				size_chunk = create_chunk_stack_b(arg, arg->stack_b, size_chunk);
+				// ft_printf("&            &\n");
+				if (top_n_stack_is_sorted(arg->stack_a, size_chunk) == 1)
+				{
+					size_chunk = count_number_of_element_in_chunk(arg, arg->stack_a);
+					if (size_chunk > SORT_SIZE)
+						size_chunk = push_swap_sort_big_list_add_chunk(arg, size_chunk);
+					push_swap_sort_small_list(arg, size_chunk);
+				}
+				// ft_printf("%%%%%%%%%%%%%%\n");
+				print_stacks(arg);
 			}
-			else if (size_chunk > SORT_SIZE)
+			else		//sortable size
 			{
-				size_chunk = push_swap_sort_big_list_add_chunk(arg, size_chunk);
-				push_swap_sort_small_list(arg, size_chunk);
+				// TODO: sort as you pa
+				i = 0;
+				while (i++ < size_chunk)
+					ft_stack_pa(arg);
+				if (top_n_stack_is_sorted(arg->stack_a, size_chunk) == 1)
+				{
+					if (size_chunk > SORT_SIZE)
+						size_chunk = push_swap_sort_big_list_add_chunk(arg, size_chunk);
+					push_swap_sort_small_list(arg, size_chunk);
+				}
 			}
-			// i = 0;
-			// while (i++ < size_chunk)
-			// 	ft_stack_ra(arg);
-			print_stacks(arg);
-			// print_stacks(arg);
 			size_chunk = count_number_of_element_in_chunk(arg, arg->stack_b);
+			ft_printf("next chunk:「%d\n", size_chunk);
+			print_stacks(arg);
 		}
 	}
 }
@@ -255,7 +353,7 @@ void	push_swap_sort_big_list(t_checker *arg)
 void	push_swap_sort(t_checker *arg, int size)
 {	
 	// setup chunks
-	arg->chunk_array = malloc(sizeof(t_chunk) * (int)(arg->max_size / 2 + 1));
+	arg->chunk_array = malloc(sizeof(t_chunk) * (int)(arg->max_size + 1));
 	if (!arg->chunk_array)
 		free_and_exit(arg);
 	arg->chunk_size = 0;

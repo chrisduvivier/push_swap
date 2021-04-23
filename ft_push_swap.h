@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:28:02 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/21 01:59:36 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 14:54:34 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		free_and_exit(t_checker *checker_arg);
 void	handle_operation(t_checker *checker_arg, char *line);
 int		stack_is_sorted(t_stack *stack);
 int		top_n_stack_is_sorted(t_stack *stack, int n);
+int		top_n_stack_is_sorted_desc(t_stack *stack, int n);
 
 int		checker_atoi(const char *str, t_checker *checker_arg);
 int		free_and_exit(t_checker *checker_arg);
