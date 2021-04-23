@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:50:04 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/22 22:40:09 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:05:06 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 {
 	int i;
 	int b_size;
+	int number_of_rra_needed;
 	
 	i = 0;
 	b_size = 0;
@@ -79,13 +80,18 @@ int	split_stack_a_with_median(t_checker *arg, int median, int size_stack)
 	fill_chunk_data(arg, arg->stack_b->head, b_size);					//right chunk
 	
 
-	// TODO: optimize by looking which way is faster
 	i = 0;
-	while (i++ < (size_stack - b_size))		//bring back to position
-		ft_stack_rra(arg);
-	
-	ft_printf("\nAFTER split median");
-	print_stacks(arg);
+	number_of_rra_needed = size_stack - b_size;
+	if ((arg->stack_a->size) > (size_t)(2 * number_of_rra_needed))
+	{
+		while (i++ < (number_of_rra_needed))		//bring back to position
+			ft_stack_rra(arg);
+	}
+	else
+	{
+		while (i++ < (int)(arg->stack_a->size - (size_t)number_of_rra_needed))		//bring back to position
+			ft_stack_ra(arg);
+	}
 	
 	return (size_stack - b_size);
 }
@@ -255,7 +261,7 @@ void	push_swap_sort_big_list(t_checker *arg)
 void	push_swap_sort(t_checker *arg, int size)
 {	
 	// setup chunks
-	arg->chunk_array = malloc(sizeof(t_chunk) * (int)(arg->max_size / 2 + 1));
+	arg->chunk_array = malloc(sizeof(t_chunk) * (int)(arg->max_size + 1));
 	if (!arg->chunk_array)
 		free_and_exit(arg);
 	arg->chunk_size = 0;
