@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:14:06 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/22 12:51:19 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/04/26 23:53:40 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	checker_atoi(const char *str, t_checker *checker_arg)
 	{
 		result = result * 10 + (*str - '0');
 		if (result > INT_MAX)
-			error_exit(checker_arg);
+		{
+			if (!(result == 2147483648 && sign == -1))				
+				error_exit(checker_arg);
+		}
 		str++;
 	}
 	return ((int)(sign * result));
