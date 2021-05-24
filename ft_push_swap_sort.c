@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap_sort.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cduvivie <cduvivie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:50:04 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/23 17:52:02 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:27:41 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 int	count_number_of_element_in_chunk(t_checker *arg, t_stack *stack)
 {
 	int	chunk_index;
-	int	count;
 
-	count = 0;
 	if (stack->size != 0 && stack->head != NULL)
 	{
 		chunk_index = find_group_of_chunk(arg, *(int *)stack->head->content);
