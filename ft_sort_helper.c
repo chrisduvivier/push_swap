@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduvivie <cduvivie@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:43:25 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/05/26 10:06:36 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/05/27 06:25:14 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	find_median(t_checker *arg, t_stack *stack, int size)
 	int		*array;
 	t_list	*cursor;
 	int		count;
-	int 	res; 
+	int		res;
 
 	count = 0;
 	cursor = stack->head;
