@@ -6,7 +6,7 @@
 /*   By: cduvivie <cduvivie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:50:04 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/05/24 19:27:41 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/05/26 09:35:43 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	push_swap_sort_big_list(t_checker *arg)
 
 void	push_swap_sort(t_checker *arg, int size)
 {	
-	arg->chunk_array = malloc(sizeof(t_chunk) * (int)(arg->max_size + 1));
+	arg->chunk_array = ft_calloc((int)(arg->max_size + 1), sizeof(t_chunk));
 	if (!arg->chunk_array)
 		free_and_exit(arg);
 	arg->chunk_size = 0;

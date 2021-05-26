@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduvivie <cduvivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cduvivie <cduvivie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:27:36 by cduvivie          #+#    #+#             */
-/*   Updated: 2021/04/23 17:34:11 by cduvivie         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:36:46 by cduvivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int	main(int argc, char *argv[])
 		}
 	}
 	free_and_exit(&checker_arg);
-	system("leaks push_swap > push_swap_leaks_out.txt");
 	return (0);
 }
